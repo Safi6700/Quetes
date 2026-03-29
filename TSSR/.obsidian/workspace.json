@@ -1,0 +1,242 @@
+{
+  "main": {
+    "id": "d7653e0414333f8a",
+    "type": "split",
+    "children": [
+      {
+        "id": "f1bebc25f120ac9d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7185b155537a8d53",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "excersie_examan/📚 DÉFINITIONS ABSOLUMENT À CONNAÎTRE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "📚 DÉFINITIONS ABSOLUMENT À CONNAÎTRE"
+            }
+          },
+          {
+            "id": "ccf3141cf727ec80",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "excersie_examan/📚 DÉFINITIONS ABSOLUMENT À CONNAÎTRE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "📚 DÉFINITIONS ABSOLUMENT À CONNAÎTRE"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e3cf389821e123f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "085906ab49ad583f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d3e96f38ca4a655b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorateur de fichiers"
+            }
+          },
+          {
+            "id": "f744a82977ed29e4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "80fd7d97a19a9732",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "3c15450adcfd3317",
+    "type": "split",
+    "children": [
+      {
+        "id": "393af174422e7288",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0951dfc002fbf668",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Guide_Exercice2_Linux.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Rétrolien pour Guide_Exercice2_Linux"
+            }
+          },
+          {
+            "id": "bdbb7fca713a81f8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Guide_Exercice2_Linux.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Liens sortants de Guide_Exercice2_Linux"
+            }
+          },
+          {
+            "id": "061034c9dfe29063",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "bb4c51510277d080",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "create a link.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of create a link"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false,
+      "bases:Créer une nouvelle base": false
+    }
+  },
+  "active": "ccf3141cf727ec80",
+  "lastOpenFiles": [
+    "checkpoint/GUIDE_EXERCICE2_PARTIE1_Q1-Q232.md",
+    "checkpoint/Guide_Exercice2_Linux.md",
+    "checkpoint/Guide_Exercice1_Windows.md",
+    "excersie_examan/📚 DÉFINITIONS ABSOLUMENT À CONNAÎTRE.md",
+    "excersie_examan/📘 PRATIQUE TSSR.md",
+    "excersie_examan/QUESTIONS_ORALES_-_ENTRAÎNEMENT.md",
+    "excersie_examan/Guide Proxmox - Opérations VM CT Réseau Disques.md",
+    "excersie_examan/TSSR_Revision_complet_tat.pdf",
+    "excersie_examan/quiz_bash_addUsers.md",
+    "excersie_examan/routeur-commandesDeBase.pdf",
+    "excersie_examan/TSSR_Revision_CCP.md",
+    "excersie_examan/📝 QUESTIONS ORALES - ENTRAÎNEMENT (1).md",
+    "excersie_examan/switch-commandesDeBase.pdf",
+    "excersie_examan/cours-sous-reseautage-ip.md",
+    "excersie_examan/🔐PRATIQUE TSSR Cryptographie Pratique.md",
+    "excersie_examan/~$SR_Revision_complet_tat.docx",
+    "excersie_examan/TSSR_Questions_CCP_Reponses.md",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Messagerie/User_Guide.md",
+    "Projet_3_G_7/conception de projet/SRVLX01_iRedMail_Guide_Complet.md",
+    "Projet_3_G_7/conception de projet/SRVLX02_GLPI_Ubuntu.md",
+    "Projet_3_G_7/conception de projet/GLPI_LDAP_Configuration.md",
+    "Untitled.base",
+    "excersie_examan/Powershell/Cours_Complet_PowerShell_TSSR.md",
+    "COUR EXAMEN01/SCRIPT_LINUX/🐧 SCRIPT BASH.md",
+    "excersie_examan/Révisions-DOM/Revision-reseau-tablesDeRoutage-CORRECTION.pdf",
+    "excersie_examan/Révisions-DOM/Revision-reseau-tablesDeRoutage.pdf",
+    "excersie_examan/Révisions-DOM/Revision-reseau-calculIP.md",
+    "excersie_examan/Révisions-DOM/revision-reseaux-CORRECTION.pdf",
+    "Projet_3_G_7/conception de projet/PBX01_FreePBX.md",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Voip/Ressources/Capture d’écran 2026-03-09 224506.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/README.md",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Voip/Install.md",
+    "Projet_3_G_7/conception de projet/FW01_pfSense_Corrige.md",
+    "Projet_3_G_7/conception de projet/SRVWIN04_WSUS_Core.md",
+    "checkpoint",
+    "Projet_3_G_7/checkpoint",
+    "Projet_3_G_7/TSSR-1025-P3-G7/WSUS/Resources/update_services_ad.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/Aliases_et_porte.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/Aliases.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/rule_dmz.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/rule_transite.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/interface_web_pfsense_dash.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/Firewall/Ressources/Capture d’écran 2026-03-02 223436.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/WSUS/Resources/CoreWsus-AD-connectionn.png",
+    "Projet_3_G_7/TSSR-1025-P3-G7/WSUS/Resources/CoreWsusInstalation.png",
+    "Sans titre.canvas",
+    "Sans titre 1.canvas",
+    "Untitled.canvas",
+    "Untitled 1.canvas",
+    "Formation TSSR/Projets/Projet 2/Diag Projet 2 g3.canvas",
+    "presentation.canvas"
+  ]
+}
