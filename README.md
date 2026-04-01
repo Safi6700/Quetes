@@ -223,3 +223,197 @@ Switch# wr
 2. **Vérifie** après chaque manip avec un `show` (`do sh vlan brief`, `do sh interfaces trunk`)
 3. **Sauvegarde** à la fin avec `wr` — ça montre que tu es rigoureux
 4. Si tu te trompes, pas de panique : `no` + la commande annule ce que tu viens de faire
+
+
+
+# Routage Inter-VLAN sur Cisco
+
+## Table des matières
+
+- [1. Router-on-a-Stick (sous-interfaces)](#1-router-on-a-stick-sous-interfaces)
+- [2. Routage par Switch L3 (SVI)](#2-routage-par-switch-l3-svi)
+- [3. Comparaison des deux méthodes](#3-comparaison-des-deux-méthodes)
+- [4. Le tagging 802.1Q](#4-le-tagging-8021q)
+- [5. Commandes d'affichage des routes](#5-commandes-daffichage-des-routes)
+
+---
+
+## 1. Router-on-a-Stick (sous-interfaces)
+
+Un seul lien **trunk** entre le switch et le routeur, avec une **sous-interface** par VLAN.
+
+### Configuration du Switch (trunk vers le routeur)
+
+```cisco
+Switch(config)# interface GigabitEthernet0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20,30
+```
+
+### Configuration du Routeur (sous-interfaces)
+
+```cisco
+! Activation de l'interface physique
+Router(config)# interface GigabitEthernet0/0
+Router(config-if)# no shutdown
+
+! Sous-interface pour le VLAN 10
+Router(config)# interface GigabitEthernet0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+
+! Sous-interface pour le VLAN 20
+Router(config)# interface GigabitEthernet0/0.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+
+! Sous-interface pour le VLAN 30
+Router(config)# interface GigabitEthernet0/0.30
+Router(config-subif)# encapsulation dot1Q 30
+Router(config-subif)# ip address 192.168.30.1 255.255.255.0
+```
+
+> **Note :** Chaque sous-interface (`.10`, `.20`, `.30`) agit comme **passerelle par défaut** pour les hôtes du VLAN correspondant.
+
+---
+
+## 2. Routage par Switch L3 (SVI)
+
+Sur un switch multicouche (Catalyst 3560/3650/9300), le routage se fait directement sur le switch via des **SVI** (Switch Virtual Interfaces).
+
+```cisco
+! Activer le routage IP sur le switch (commande obligatoire)
+Switch(config)# ip routing
+
+! SVI pour le VLAN 10
+Switch(config)# interface vlan 10
+Switch(config-if)# ip address 192.168.10.1 255.255.255.0
+Switch(config-if)# no shutdown
+
+! SVI pour le VLAN 20
+Switch(config)# interface vlan 20
+Switch(config-if)# ip address 192.168.20.1 255.255.255.0
+Switch(config-if)# no shutdown
+
+! SVI pour le VLAN 30
+Switch(config)# interface vlan 30
+Switch(config-if)# ip address 192.168.30.1 255.255.255.0
+Switch(config-if)# no shutdown
+```
+
+> **Important :** Sans la commande `ip routing`, le switch ne route pas entre les VLANs.
+
+---
+
+## 3. Comparaison des deux méthodes
+
+| Critère | Router-on-a-Stick | Switch L3 (SVI) |
+|---|---|---|
+| **Équipement** | Routeur + Switch L2 | Switch L3 seul |
+| **Performance** | Limitée (un seul lien) | Meilleure (routage matériel) |
+| **Coût** | Moins cher | Plus cher (switch L3) |
+| **Cas d'usage** | Petit réseau / lab | Réseau de production |
+
+---
+
+## 4. Le tagging 802.1Q
+
+### Principe
+
+Sur un lien **trunk**, le switch ajoute un **tag 802.1Q** dans l'en-tête Ethernet de chaque trame. Ce tag contient le **VLAN ID**.
+
+Côté routeur, la commande `encapsulation dot1Q [vlan-id]` indique quelle sous-interface traite les trames tagguées avec ce VLAN ID.
+
+### Exemple de flux
+
+Un PC dans le VLAN 10 (`192.168.10.10`) ping un PC dans le VLAN 20 (`192.168.20.10`) :
+
+```
+1. PC VLAN 10 envoie le paquet vers sa passerelle (192.168.10.1)
+2. Le switch tagge la trame avec VLAN 10 sur le trunk
+3. Le routeur reçoit la trame sur Gi0/0.10 (encapsulation dot1Q 10)
+4. Le routeur route le paquet vers 192.168.20.0/24
+5. Le routeur envoie la trame par Gi0/0.20 avec le tag VLAN 20
+6. Le switch reçoit la trame, lit le tag 20, transmet au port access du VLAN 20
+7. Le PC VLAN 20 reçoit le paquet
+```
+
+### Schéma
+
+```
+PC VLAN 10 ──► [Switch port access] ──► [Trunk tagué] ──► Routeur Gi0/0.10
+                                                              │ (route)
+PC VLAN 20 ◄── [Switch port access] ◄── [Trunk tagué] ◄── Routeur Gi0/0.20
+```
+
+### VLAN natif
+
+Le VLAN natif (par défaut VLAN 1) circule **sans tag** sur le trunk. Configuration :
+
+```cisco
+Router(config)# interface GigabitEthernet0/0.1
+Router(config-subif)# encapsulation dot1Q 1 native
+```
+
+> Le mot-clé `native` indique que les trames de ce VLAN ne sont pas tagguées.
+
+---
+
+## 5. Commandes d'affichage des routes
+
+### Table de routage complète
+
+```cisco
+Router# show ip route
+```
+
+### Codes de la table de routage
+
+| Code | Signification |
+|------|---------------|
+| `C` | Connected – réseau directement connecté |
+| `L` | Local – IP exacte de l'interface |
+| `S` | Static – route statique |
+| `O` | OSPF |
+| `R` | RIP |
+| `D` | EIGRP |
+| `B` | BGP |
+
+### Filtrer par type de route
+
+```cisco
+Router# show ip route static         ! Routes statiques uniquement
+Router# show ip route connected       ! Réseaux connectés uniquement
+Router# show ip route ospf            ! Routes OSPF uniquement
+```
+
+### Vérifier une route précise
+
+```cisco
+Router# show ip route 192.168.20.0
+```
+
+### Exemple de sortie (Router-on-a-Stick)
+
+```
+Router# show ip route
+
+C    192.168.10.0/24 is directly connected, GigabitEthernet0/0.10
+L    192.168.10.1/32 is directly connected, GigabitEthernet0/0.10
+C    192.168.20.0/24 is directly connected, GigabitEthernet0/0.20
+L    192.168.20.1/32 is directly connected, GigabitEthernet0/0.20
+C    192.168.30.0/24 is directly connected, GigabitEthernet0/0.30
+L    192.168.30.1/32 is directly connected, GigabitEthernet0/0.30
+```
+
+### Autres commandes utiles
+
+```cisco
+Router# show ip interface brief       ! État rapide de toutes les interfaces
+Router# show ip protocols             ! Protocoles de routage actifs (OSPF, RIP...)
+Router# show ip route summary         ! Résumé avec le nombre de routes par type
+```
+
+---
+
+> **Astuce CCNA :** `show ip route` et `show ip interface brief` sont les deux commandes les plus utilisées en troubleshooting et tombent régulièrement à l'examen.
